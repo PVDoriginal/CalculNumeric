@@ -1,6 +1,8 @@
 use nalgebra::{DMatrix, DVector, Dyn, Matrix, Matrix1};
 use rand::{Rng, rng};
 
+use crate::utils::parse_csv;
+
 #[test]
 fn ex1() {
     let mut rng = rng();
@@ -24,7 +26,28 @@ fn ex1() {
 
 #[test]
 fn ex2() {
-    todo!()
+    // Am impartit fisierul .pickle din laborator in 3 fisiere csv pentru fiecare graf ca sa le pot parsa fara numpy
+    for graph in [
+        parse_csv("graphs/g1.csv").unwrap(),
+        parse_csv("graphs/g3.csv").unwrap(),
+        parse_csv("graphs/g2.csv").unwrap(),
+    ] {
+        println!("Graph: {graph}");
+
+        let eig = graph.symmetric_eigenvalues();
+        println!("Eigenvalues: {eig}");
+        println!("Max Clique: {}", eig.amax().floor() + 1.0);
+
+        let mut unique_eig = eig.iter().map(|x| x.round() as i32).collect::<Vec<_>>();
+        unique_eig.sort();
+        unique_eig.dedup();
+
+        println!("Is complete: {}", unique_eig.len() == 2);
+        println!(
+            "Is bipartite: {}",
+            *unique_eig.iter().min().unwrap() == -1 * *unique_eig.iter().max().unwrap()
+        );
+    }
 }
 
 const TOLERANCE: f64 = 0.000001;
