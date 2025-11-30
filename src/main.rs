@@ -1,4 +1,9 @@
+use nalgebra::DMatrix;
+
 #[cfg(test)]
-mod lab1;
+mod labs {
+    mod lab1;
+    mod lab2;
+}
 
 fn main() {}
