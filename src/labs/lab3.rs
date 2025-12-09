@@ -1,6 +1,7 @@
 use core::f64;
 
 use image::{ImageBuffer, ImageReader, Luma};
+use nalgebra::Matrix3x4;
 use nalgebra::{DMatrix, DVector, Matrix1};
 use rand::{Rng, rng};
 use rand_distr::Distribution;
