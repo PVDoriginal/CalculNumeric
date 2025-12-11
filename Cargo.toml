@@ -12,6 +12,7 @@ linfa-svm = { version = "0.7" }
 lstsq = "0.7.0"
 nalgebra = "0.34.1"
 plotters = "0.3.7"
+probability = "0.20.3"
 rand = "0.9.2"
 rand_distr = "0.5.1"
 rust_decimal = {version = "1.38.0", features = ["macros"]}
